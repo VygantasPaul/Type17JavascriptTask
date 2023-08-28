@@ -5,7 +5,7 @@ const toShowData = (adsData) =>{
   const adsWrap = document.querySelector('.ads-home-page');
   
   adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))).forEach(item => {
-    
+    console.log(typeof(parseFloat(item.price)))
     const adsInnerWrap = document.createElement('a')
     
     adsInnerWrap.setAttribute('class','ad-item')

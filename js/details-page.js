@@ -88,18 +88,42 @@ const getAdvertisement = async() => {
   }
 }
 
-const deleteAdObject = () => {
+const deleteAdObject = async() => {
+  let response = await fetch(BASE_URL + '/' + advertisementId,{
+    method: "DELETE"
+  })
   
-  
+  try {
+    if(response.ok){
+      const data = await response.json();
+      console.log(data)
+      return(data)
+      
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
-const onDeleteAdObject = () => {
+const onDeleteAdObject = (data) => {
+  if(data){
+    console.log('Sekmingai istrintas skelbimas')
+    setTimeout(()=>{
+      window.location.replace("./index.html");
+    },1000)
+  }else {
+    console.log('Veiksmo atlikti nepavyko')
+    return false
+  }
+}
+const onDeleteAdObjectClick = async(e) => {
+  e.preventDefault();
+  const deleteObj = await deleteAdObject();
+  onDeleteAdObject(deleteObj)
   
 }
+document.querySelector('.btn-delete').addEventListener('click',onDeleteAdObjectClick)
 
-const onDeleteAdObjectClick = () => {
-  
-}
 
 const displayData = async() => {
   const advertisement = await getAdvertisement();

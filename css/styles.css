@@ -80,7 +80,7 @@ header ul li a {
 }
 .ads-page-inner .btn-delete{
   margin-top: 5rem;
-  display: block;
+  display: inline-block;
   text-decoration: underline;
   color: brown;
 }
