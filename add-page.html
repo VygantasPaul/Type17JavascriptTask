@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skelbimo puslapis</title>
+  <title>Prideti skelbima</title>
   <link href="css/styles.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -24,10 +24,17 @@
         </div>
       </div>
     </header>
-    <div id="details-page" class="details-page">
-
+    <div class="form-add-item" id="form-add-item">
+      <form action="">
+        <input type="text" id="input-name" placeholder="Skelbimo pavadinimas">
+        <input type="number" id="input-price" placeholder="Skelbimo kaina">
+        <input type="text" id="input-location" placeholder="Skelbimo lokacija">
+        <input type="text" id="input-image" placeholder="Skelbimo nuotrauka">
+        <textarea name="description" id="input-description" cols="30" rows="10"></textarea>
+        <button type="submit">Ideti skelbima</button>
+      </form>
     </div>
   </div>
 </body>
-<script src="./js/details-page.js"></script>
+<script src="./js/add-page.js"></script>
 </html>

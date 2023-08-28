@@ -13,6 +13,14 @@ a {
   text-decoration: none;
   color: black;
 }
+input:focus,textarea:focus {
+  outline: none;
+}
+input,textarea {
+  border: 1px solid rgb(173, 173, 173);
+  background-color: rgb(255, 255, 255);
+  border-radius: 0.4rem;
+}
 .wrap {
   max-width: 100%;
   margin-left: auto;
@@ -84,6 +92,18 @@ header ul li a {
   text-decoration: underline;
   color: brown;
 }
+.form-add-item form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  
+}
+.form-add-item form input,.form-add-item form button {
+  padding: 0.6rem 0.4rem;
+}
+.form-add-item form input,.form-add-item form textarea {
+  margin-bottom: 1rem;
+}
 @media (min-width:992px) {
   .header-inner {
     display: flex;
@@ -97,6 +117,6 @@ header ul li a {
   }
   .ads-page-inner {
     display: flex;
-   
+    
   }
 }

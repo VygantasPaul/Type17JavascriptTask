@@ -124,11 +124,11 @@ const onDeleteAdObjectClick = async(e) => {
 }
 document.querySelector('.btn-delete').addEventListener('click',onDeleteAdObjectClick)
 
-
 const displayData = async() => {
   const advertisement = await getAdvertisement();
-  addToScreen(advertisement)
-  
+  if(advertisement) {
+    addToScreen(advertisement)
+  }
 }
 
 displayData();
