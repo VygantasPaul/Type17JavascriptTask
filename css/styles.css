@@ -64,6 +64,11 @@ header ul li a {
 .ads-info-box  {
   padding: 0.5rem;
 }
+
+.advertisement-page-inner {
+  display: flex;
+  justify-content: center;
+}
 @media (min-width:992px) {
   .header-inner {
     display: flex;

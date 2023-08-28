@@ -3,13 +3,13 @@ const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const toShowData = (adsData) =>{
   
   const adsWrap = document.querySelector('.ads-home-page');
-
+  
   adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))).forEach(item => {
     
     const adsInnerWrap = document.createElement('a')
     
     adsInnerWrap.setAttribute('class','ad-item')
-    adsInnerWrap.setAttribute("href","./ad-item.html")
+    adsInnerWrap.setAttribute("href","./advertisement.html")
     
     const adsInfoBox = document.createElement('div')
     adsInfoBox.setAttribute('class','ads-info-box')
@@ -47,9 +47,13 @@ const toShowData = (adsData) =>{
 
 const displayData = async() => {
   const response = await fetch(BASE_URL);
-  if(response.ok){
-    const adsData = await response.json();
-    toShowData(adsData)
+  try {
+    if(response.ok){
+      const adsData = await response.json();
+      toShowData(adsData)
+    }
+  } catch (error){
+    console.log(error)
   }
 }
 
