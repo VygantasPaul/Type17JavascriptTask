@@ -9,7 +9,7 @@ const toShowData = (adsData) =>{
     const adsInnerWrap = document.createElement('a')
     
     adsInnerWrap.setAttribute('class','ad-item')
-    adsInnerWrap.setAttribute("href","./advertisement.html?advertisementId="+item.id)
+    adsInnerWrap.setAttribute("href","./details-page.html?advertisementId="+item.id)
     
     const adsInfoBox = document.createElement('div')
     adsInfoBox.setAttribute('class','ads-info-box')

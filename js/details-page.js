@@ -5,8 +5,8 @@ const advertisementId = url.searchParams.get("advertisementId")
 
 const constructHtmlPage = () => {
   
-  const adPageWrap = document.querySelector('.ads-page');
-  adPageWrap.setAttribute('class','ads-page')
+  const adPageWrap = document.querySelector('.details-page');
+  adPageWrap.setAttribute('class','details-page')
   
   const adPageWrapInner = document.createElement('div');
   adPageWrapInner.setAttribute('class','ads-page-inner')
