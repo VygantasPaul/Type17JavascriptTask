@@ -19,8 +19,9 @@ const constructHtmlPage = () => {
   const adImage = document.createElement('img');
   adImage.setAttribute('id','image')
   adPageWrapInner.append(adPageImageWrap)
-  adPageImageWrap.append(adImage)
+  adPageImageWrap.append(adImage)     /// Image box wrap
   
+  ////
   const adPageInfoWrap = document.createElement('div');
   adPageInfoWrap.setAttribute('class','info-wrapper')
   
@@ -45,9 +46,9 @@ const constructHtmlPage = () => {
   
   adPageDescription.append(pDescription)
   
-  adPageWrapInner.append(adPageInfoWrap)
+  adPageWrapInner.append(adPageInfoWrap)  
   
-  adPageInfoWrap.append(adPageTitle,adPageLocation,adPagePrice,adPageDescription,buttonDelete)
+  adPageInfoWrap.append(adPageTitle,adPageLocation,adPagePrice,adPageDescription,buttonDelete)   /// Info box wrap
   
 }
 constructHtmlPage();

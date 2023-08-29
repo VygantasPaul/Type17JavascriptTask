@@ -37,12 +37,14 @@ const insertAdPost = async(advertisement) => {
 
 const checkAdPostValid = (advertisements) => {
   if(advertisements){
-    const { name, price, location, description, photo } = advertisements;
+    const { name, price, location, description, photo } = advertisements; //destruction
     console.log(advertisements)
     if (name === ''|| price === '' || location === '' || description === '' || photo === ''){
       responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
       return false; 
-      
+    } else if (isNaN(parseFloat(price))){
+      responseWrap.innerHTML = 'Turi buti skaiciai';
+      return false; 
     } else {
       responseWrap.innerHTML = 'Skelbimas sekmingai idetas'
       setTimeout(()=>{
@@ -52,7 +54,7 @@ const checkAdPostValid = (advertisements) => {
     }
     
   } else {
-    return true
+    return false
   }
 }
 
@@ -65,6 +67,4 @@ document.querySelector('form').addEventListener('submit', async(e)=>{
       return false
     } 
   }
-  
-
 })

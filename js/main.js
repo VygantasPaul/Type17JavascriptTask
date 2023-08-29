@@ -8,7 +8,6 @@ const toShowData = (adsData) =>{
   adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))).forEach(item => {
  
     const adsInnerWrap = document.createElement('a')
-    
     adsInnerWrap.setAttribute('class','ad-item')
     adsInnerWrap.setAttribute("href","./details-page.html?advertisementId="+item.id)
     
@@ -20,10 +19,6 @@ const toShowData = (adsData) =>{
     adTitle.setAttribute('class','ads-title')
     adTitle.innerHTML = item.name
     
-    const adLocation = document.createElement('h3')
-    adLocation.setAttribute('class','ads-location')
-    adLocation.innerHTML = item.location
-    
     const adPrice = document.createElement('h4')
     adPrice.setAttribute('class','ads-price')
     adPrice.innerHTML = item.price + '$'
@@ -32,13 +27,13 @@ const toShowData = (adsData) =>{
     adImg.setAttribute('class','ads-img')
     adImg.setAttribute('src',item.photo)
 
-    adsWrap.append(adsInnerWrap)
+    adsWrap.append(adsInnerWrap) 
     
-    adsInnerWrap.append(adImg)
+    adsInnerWrap.append(adImg) // Image wrap
     
-    adsInnerWrap.append(adsInfoBox)
+    adsInnerWrap.append(adsInfoBox) /// Text box wrap
     
-    adsInfoBox.append(adTitle,adLocation,adPrice)
+    adsInfoBox.append(adTitle,adPrice)  
     
   });
   
