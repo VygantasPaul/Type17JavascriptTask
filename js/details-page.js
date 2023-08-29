@@ -48,7 +48,7 @@ const constructHtmlPage = () => {
   
   adPageWrapInner.append(adPageInfoWrap)  
   
-  adPageInfoWrap.append(adPageTitle, adPageLocation, adPagePrice, adPageDescription,buttonDelete,buttonEdit)   /// Info box wrap
+  adPageInfoWrap.append(adPageTitle, adPageLocation, adPagePrice, adPageDescription,buttonDelete)   /// Info box wrap
   
 }
 constructHtmlPage();
