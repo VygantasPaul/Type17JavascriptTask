@@ -10,7 +10,7 @@ const constructHtmlPage = () => {
   adPageWrap.setAttribute('class','details-page')
   
   const adPageWrapInner = document.createElement('div');
-  adPageWrapInner.setAttribute('class','ads-page-inner')
+  adPageWrapInner.setAttribute('class','details-page-inner')
   adPageWrap.append(adPageWrapInner)
   
   const adPageImageWrap = document.createElement('div');
@@ -69,7 +69,7 @@ const addToScreen = (advertisement) => {
   
   const adPageDescription = document.querySelector('p')
   adPageDescription.innerHTML = `<strong>Aprasymas: </strong> ${advertisement.description}`
-  
+  console.log(advertisement)
 }
 
 const getAdvertisement = async() => {

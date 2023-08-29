@@ -38,18 +38,6 @@ header {
   padding: 1rem;
   
 }
-.logo {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-.header-inner {
-  display: block;
-  text-align: center;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
 header ul li:nth-child(2) {
   padding-bottom: 0;
 }
@@ -65,6 +53,20 @@ header ul li a {
 header ul li a:hover {
   text-decoration: underline;
 }
+
+.logo {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.header-inner {
+  display: block;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .ads-home-page {
   display: grid;
   grid-template-columns: repeat(3, minmax(auto, 1fr));
@@ -94,23 +96,25 @@ header ul li a:hover {
 .ads-home-page  .ads-info-box  {
   padding: 0.5rem;
 }
-
-.ads-page-inner {
+.details-page-inner {
   display: block;
   justify-content: center;
   align-items: center;
   padding-top: 3rem;
 }
-.ads-page-inner .info-wrapper {
+.details-page-inner .ad-title, .details-page-inner .ad-location,.details-page-inner .ad-price {
+  padding-bottom: 1rem;
+}
+.details-page-inner .info-wrapper {
   padding-left: 3rem;
   
 }
-.ads-page-inner .image-wrapper img{
+.details-page-inner .image-wrapper img{
   max-width: 100%;
   height: 400px;
   width: 100%;
 }
-.ads-page-inner .btn-delete{
+.details-page-inner .btn-delete{
   margin-top: 5rem;
   display: inline-block;
   padding: 1rem;
@@ -118,22 +122,38 @@ header ul li a:hover {
   cursor: pointer;
   border: none;
 }
-.ads-page-inner .btn-delete:hover {
+.details-page-inner .btn-delete:hover {
   text-decoration: underline;
   color: #fff;
   background-color: brown;
 }
+
 .form-add-item form {
+  display: block;
+  padding: 1rem;
+}
+
+.form-add-item form  .left-inputs {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  
+}
+.form-add-item form .right-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .form-add-item form input,.form-add-item form button {
-  padding: 0.6rem 0.4rem;
+  padding: 0.8rem 0.4rem;
 }
 .form-add-item form button {
   cursor: pointer;
+  border: 2px solid #efefef;
+  border-radius: 0.5rem;
+}
+.form-add-item form button:hover {
+  border: 2px solid #d0c28a;
+  background-color: #d0c28a;
 }
 .form-add-item form input,.form-add-item form textarea {
   margin-bottom: 1rem;
@@ -154,14 +174,30 @@ header ul li a:hover {
     display: inline-block;
     padding: 0 0.6rem;
   }
-  .ads-page-inner {
+  .form-add-item form {
+    display: flex;
+
+  }
+  .form-add-item form  .left-inputs {
+    width: 50%;
+    padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .form-add-item form .right-inputs {
+    width: 50%;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .details-page-inner {
     display: flex;
     
   }
-  .ads-page-inner .info-wrapper { 
+  .details-page-inner .info-wrapper { 
     width: 50%;
   }
-  .ads-page-inner .info-wrapper {
+  .details-page-inner .info-wrapper {
     width: 50%;
     
   }
