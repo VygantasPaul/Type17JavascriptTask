@@ -1,11 +1,16 @@
 const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
+const responseWrap = document.querySelector('.response');
+const setImageAttributes = (img, title, imageUrl) => {
+  img.setAttribute('alt', title);
+  img.setAttribute('src', imageUrl || "images/icon-image-not-found-free-vector.jpg");
+}; 
 
 const toShowData = (adsData) =>{
   
   const adsWrap = document.querySelector('.ads-home-page');
   
   adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))).forEach(item => {
-    console.log(typeof(parseFloat(item.price)))
+ 
     const adsInnerWrap = document.createElement('a')
     
     adsInnerWrap.setAttribute('class','ad-item')
@@ -13,7 +18,6 @@ const toShowData = (adsData) =>{
     
     const adsInfoBox = document.createElement('div')
     adsInfoBox.setAttribute('class','ads-info-box')
-    
     adsInnerWrap.append(adsInfoBox)
     
     const adTitle = document.createElement('h2')
@@ -26,11 +30,12 @@ const toShowData = (adsData) =>{
     
     const adPrice = document.createElement('h4')
     adPrice.setAttribute('class','ads-price')
-    adPrice.innerHTML = item.price + '$'
+    adPrice.innerHTML = item.price
     
     const adImg = document.createElement('img')
     adImg.setAttribute('class','ads-img')
-    adImg.setAttribute('src',item.photo)
+
+    setImageAttributes(adImg,item.name,item.photo)
     
     adsWrap.append(adsInnerWrap)
     
@@ -53,6 +58,7 @@ const displayData = async() => {
       toShowData(adsData)
     }
   } catch (error){
+    responseWrap.innerHTML = 'Ivyko klaida'
     console.log(error)
   }
 }

@@ -2,6 +2,7 @@
 const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const url = new URL(window.location.href)
 const advertisementId = url.searchParams.get("advertisementId")
+const responseWrap = document.querySelector('.response');
 
 const constructHtmlPage = () => {
   
@@ -17,7 +18,6 @@ const constructHtmlPage = () => {
   
   const adImage = document.createElement('img');
   adImage.setAttribute('src','')
-  adImage.setAttribute('alt','')
   adImage.setAttribute('id','image')
   adPageWrapInner.append(adPageImageWrap)
   adPageImageWrap.append(adImage)
@@ -54,7 +54,6 @@ const constructHtmlPage = () => {
 constructHtmlPage();
 
 const addToScreen = (advertisement) => {
-  
   const adPageImageWrap = document.querySelector('#image')
   adPageImageWrap.setAttribute('src',advertisement.photo)
   adPageImageWrap.setAttribute('alt',advertisement.name)
@@ -107,12 +106,12 @@ const deleteAdObject = async() => {
 
 const onDeleteAdObject = (data) => {
   if(data){
-    console.log('Sekmingai istrintas skelbimas')
+    responseWrap.innerHTML = 'skelbimas sekmingai istrintas'
     setTimeout(()=>{
       window.location.replace("./index.html");
     },1000)
   }else {
-    console.log('Veiksmo atlikti nepavyko')
+    responseWrap.innerHTML = 'Veiksmo atlikti nepavyko'
     return false
   }
 }
