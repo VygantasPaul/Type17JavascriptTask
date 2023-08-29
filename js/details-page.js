@@ -17,7 +17,6 @@ const constructHtmlPage = () => {
   adPageImageWrap.setAttribute('class','image-wrapper')
   
   const adImage = document.createElement('img');
-  adImage.setAttribute('src','')
   adImage.setAttribute('id','image')
   adPageWrapInner.append(adPageImageWrap)
   adPageImageWrap.append(adImage)
@@ -34,9 +33,9 @@ const constructHtmlPage = () => {
   const adPagePrice = document.createElement('h4')
   adPagePrice.setAttribute('class','ad-price')
   
-  const buttonDelete = document.createElement('a')
+  const buttonDelete = document.createElement('button')
   buttonDelete.setAttribute('class','btn-delete')
-  buttonDelete.setAttribute('href','#')
+  buttonDelete.setAttribute('type','button')
   buttonDelete.textContent = "Istrinti"
   
   const adPageDescription = document.createElement('div')
@@ -78,7 +77,6 @@ const getAdvertisement = async() => {
   try {
     if(response.ok){
       const advertisement = await response.json();
-      console.log(advertisement)
       return(advertisement)
       
     }
@@ -88,14 +86,12 @@ const getAdvertisement = async() => {
 }
 
 const deleteAdObject = async() => {
-  let response = await fetch(BASE_URL + '/' + advertisementId,{
-    method: "DELETE"
-  })
-  
   try {
+    let response = await fetch(BASE_URL + '/' + advertisementId,{
+      method: "DELETE"
+    })
     if(response.ok){
       const data = await response.json();
-      console.log(data)
       return(data)
       
     }
@@ -104,9 +100,9 @@ const deleteAdObject = async() => {
   }
 }
 
-const onDeleteAdObject = (data) => {
+const checkDeleteAdObject = (data) => {
   if(data){
-    responseWrap.innerHTML = 'skelbimas sekmingai istrintas'
+    responseWrap.innerHTML = 'Skelbimas sekmingai istrintas'
     setTimeout(()=>{
       window.location.replace("./index.html");
     },1000)
@@ -118,7 +114,7 @@ const onDeleteAdObject = (data) => {
 const onDeleteAdObjectClick = async(e) => {
   e.preventDefault();
   const deleteObj = await deleteAdObject();
-  onDeleteAdObject(deleteObj)
+  checkDeleteAdObject(deleteObj)
   
 }
 document.querySelector('.btn-delete').addEventListener('click',onDeleteAdObjectClick)

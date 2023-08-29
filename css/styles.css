@@ -105,6 +105,8 @@ header ul li a:hover {
   display: inline-block;
   padding: 1rem;
   color: brown;
+  cursor: pointer;
+  border: none;
 }
 .ads-page-inner .btn-delete:hover {
   text-decoration: underline;
@@ -119,6 +121,9 @@ header ul li a:hover {
 }
 .form-add-item form input,.form-add-item form button {
   padding: 0.6rem 0.4rem;
+}
+.form-add-item form button {
+  cursor: pointer;
 }
 .form-add-item form input,.form-add-item form textarea {
   margin-bottom: 1rem;
