@@ -35,7 +35,7 @@ const toShowData = (adsData) =>{
     adsInnerWrap.append(adsInfoBox) /// Text box wrap
     
     adsInfoBox.append(adTitle,adPrice)   
-   
+    adsInnerWrap.classList.add('show-ad');
   });
   
 }

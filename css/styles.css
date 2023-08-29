@@ -1,11 +1,14 @@
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 body {
-  padding: 0;
-  margin: 0;
+  background: #fff;
   font-family: 'Poppins', sans-serif;
+  color: #2b2a2c;
+  font-size: 16px;
 }
 ul {
   padding-left: 0;
@@ -70,7 +73,6 @@ header ul li a:hover {
 }
 .ad-item {
   border: 2px solid rgb(229, 229, 229);
-  display: block !important;
 }
 .ad-item:hover {
   border: 2px solid #d0c28a;
@@ -131,6 +133,10 @@ header ul li a:hover {
 }
 .response {
   padding: 0 1rem;
+}
+
+.ad-item.show-ad {
+  display: block !important;
 }
 
 @media (min-width:992px) {
