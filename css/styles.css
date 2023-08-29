@@ -60,6 +60,7 @@ header ul li {
 header ul li a {
   color: black;
   text-decoration: none;
+  
 }
 header ul li a:hover {
   text-decoration: underline;
@@ -77,6 +78,12 @@ header ul li a:hover {
 .ad-item:hover {
   border: 2px solid #d0c28a;
   box-shadow: 0 0 4px rgb(192, 192, 192);
+}
+.ad-item:hover h2 {
+  color: #d0c28a;
+}
+.ads-home-page .ad-item .ads-title {
+  padding-bottom: 1rem;
 }
 .ads-home-page .ads-img {
   width: 100%;
@@ -135,9 +142,6 @@ header ul li a:hover {
   padding: 0 1rem;
 }
 
-.ad-item.show-ad {
-  display: block !important;
-}
 
 @media (min-width:992px) {
   .header-inner {

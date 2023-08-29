@@ -39,10 +39,10 @@ const checkAdPostValid = (advertisements) => {
   if(advertisements){
     const { name, price, location, description, photo } = advertisements; //destruction
 
-    if (name === ''|| price === '' || location === '' || description === '' || photo === ''){
+    if (name === ''|| price === '' || location === '' || description === '' || photo === ''){  // validation
       responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
       return false; 
-    } else if (isNaN(parseFloat(price))){
+    } else if (isNaN(parseFloat(price))){   // check if is not a number
       responseWrap.innerHTML = 'Turi buti skaiciai';
       return false; 
     } else {
@@ -60,9 +60,9 @@ const checkAdPostValid = (advertisements) => {
 
 document.querySelector('form').addEventListener('submit', async(e)=>{
   e.preventDefault();
-  const advertisement = getAdObject();
-  if (checkAdPostValid(advertisement)) {
-    const insertedAdvertisement = await insertAdPost(advertisement); 
+  const advertisement = getAdObject();   // asinging to object
+  if (checkAdPostValid(advertisement)) {  // checking object validation if its true inserting ad calling insertAdPos
+    const insertedAdvertisement = await insertAdPost(advertisement);  // 
     if (!insertedAdvertisement) {
       return false
     } 
