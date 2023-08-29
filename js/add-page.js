@@ -38,7 +38,7 @@ const insertAdPost = async(advertisement) => {
 const checkAdPostValid = (advertisements) => {
   if(advertisements){
     const { name, price, location, description, photo } = advertisements; //destruction
-    console.log(advertisements)
+
     if (name === ''|| price === '' || location === '' || description === '' || photo === ''){
       responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
       return false; 

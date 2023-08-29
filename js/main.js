@@ -2,11 +2,11 @@ const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const responseWrap = document.querySelector('.response');
 
 const toShowData = (adsData) =>{
-  
+  console.log(adsData)
   const adsWrap = document.querySelector('.ads-home-page');
   
-  adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))).forEach(item => {
- 
+  adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))).forEach(item => {  
+    item.style.display = 'block';
     const adsInnerWrap = document.createElement('a')
     adsInnerWrap.setAttribute('class','ad-item')
     adsInnerWrap.setAttribute("href","./details-page.html?advertisementId="+item.id)
@@ -26,17 +26,16 @@ const toShowData = (adsData) =>{
     const adImg = document.createElement('img')
     adImg.setAttribute('class','ads-img')
     adImg.setAttribute('src',item.photo)
-
+    
     adsWrap.append(adsInnerWrap) 
     
     adsInnerWrap.append(adImg) // Image wrap
     
     adsInnerWrap.append(adsInfoBox) /// Text box wrap
     
-    adsInfoBox.append(adTitle,adPrice)  
+    adsInfoBox.append(adTitle,adPrice)   
     
   });
-  
   
 }
 
@@ -48,7 +47,7 @@ const displayData = async() => {
       toShowData(adsData)
     }
   } catch (error){
-    responseWrap.innerHTML = 'Ivyko klaida' + error
+    return false
   }
 }
 
