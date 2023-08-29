@@ -38,7 +38,7 @@ const constructHtmlPage = () => {
   buttonDelete.setAttribute('class','btn-delete')
   buttonDelete.setAttribute('type','button')
   buttonDelete.textContent = "Istrinti"
-  
+
   const adPageDescription = document.createElement('div')
   adPageDescription.setAttribute('class','ad-description')
   
@@ -48,7 +48,7 @@ const constructHtmlPage = () => {
   
   adPageWrapInner.append(adPageInfoWrap)  
   
-  adPageInfoWrap.append(adPageTitle, adPageLocation, adPagePrice, adPageDescription,buttonDelete)   /// Info box wrap
+  adPageInfoWrap.append(adPageTitle, adPageLocation, adPagePrice, adPageDescription,buttonDelete,buttonEdit)   /// Info box wrap
   
 }
 constructHtmlPage();
@@ -57,8 +57,9 @@ const addToScreen = (advertisement) => {
   const adPageImageWrap = document.querySelector('#image')
   adPageImageWrap.setAttribute('src',advertisement.photo)
   adPageImageWrap.setAttribute('alt',advertisement.name)
-  
+
   const adPageTitle = document.querySelector('.ad-title')
+
   adPageTitle.innerHTML = `<strong>Pavadinimas:</strong> ${advertisement.name}`
   
   const adPagelocation = document.querySelector('.ad-location')
@@ -118,7 +119,7 @@ const onDeleteAdObjectClick = async(e) => {
   checkDeleteAdObject(deleteObj)
   
 }
-document.querySelector('.btn-delete').addEventListener('click',onDeleteAdObjectClick)
+document.querySelector('.btn-delete').addEventListener('click', onDeleteAdObjectClick)
 
 const displayData = async() => {
   const advertisement = await getAdvertisement();

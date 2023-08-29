@@ -48,7 +48,7 @@ const displayData = async() => {
       toShowData(adsData)
     }
   } catch (error){
-    return false
+    console.log(error)
   }
 }
 
