@@ -70,6 +70,7 @@ header ul li a:hover {
 }
 .ad-item {
   border: 2px solid rgb(229, 229, 229);
+  display: block !important;
 }
 .ad-item:hover {
   border: 2px solid #d0c28a;
@@ -131,6 +132,7 @@ header ul li a:hover {
 .response {
   padding: 0 1rem;
 }
+
 @media (min-width:992px) {
   .header-inner {
     display: flex;
