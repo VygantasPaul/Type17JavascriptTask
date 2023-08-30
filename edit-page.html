@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koreguoti skelbima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="css/styles.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="container">
+        <div class="header-inner">
+          <div class="logo">
+            <a href="./index.html"><img src="images/logotipas_ua.svg" alt="logotipas"></a>
+          </div>
+          <nav class="nav-menu">
+            <ul>
+              <li><a href="./index.html">Skelbimai</a></li>
+              <li><a href="./add-page.html">Ideti skelbima</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="form-add-item" id="form-add-item">
+      <form action="">
+        <div class="left-inputs">
+          <input type="text" id="input-name" placeholder="Skelbimo pavadinimas">
+          <input type="text" id="input-price" placeholder="Skelbimo kaina">
+          <input type="text" id="input-location" placeholder="Skelbimo lokacija">
+          <input type="text" id="input-image" placeholder="Skelbimo nuotrauka">
+        </div>
+        <div class="right-inputs">
+          <textarea name="description" id="input-description" cols="30" rows="10"></textarea>
+          <button type="submit" id="btn-edit">Koreguoti skelbima</button>
+        </div>
+        
+      </form>
+      <div class="response"></div>
+    </div>
+  </div>
+</body>
+<script src="./js/edit-page.js"></script>
+</html>

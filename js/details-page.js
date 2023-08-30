@@ -39,6 +39,10 @@ const constructHtmlPage = () => {
   buttonDelete.setAttribute('type','button')
   buttonDelete.textContent = "Istrinti"
 
+  const buttonEdit = document.createElement('a')
+  buttonEdit.setAttribute('class','btn-edit')
+  buttonEdit.textContent = "Koreguoti"
+
   const adPageDescription = document.createElement('div')
   adPageDescription.setAttribute('class','ad-description')
   
@@ -48,7 +52,7 @@ const constructHtmlPage = () => {
   
   adPageWrapInner.append(adPageInfoWrap)  
   
-  adPageInfoWrap.append(adPageTitle, adPageLocation, adPagePrice, adPageDescription,buttonDelete)   /// Info box wrap
+  adPageInfoWrap.append(adPageTitle, adPageLocation, adPagePrice, adPageDescription,buttonDelete,buttonEdit)   /// Info box wrap
   
 }
 constructHtmlPage();
@@ -57,6 +61,9 @@ const addToScreen = (advertisement) => {
   const adPageImageWrap = document.querySelector('#image')
   adPageImageWrap.setAttribute('src',advertisement.photo)
   adPageImageWrap.setAttribute('alt',advertisement.name)
+
+  const buttonEdit = document.querySelector('.btn-edit')
+  buttonEdit.setAttribute('href','./edit-page.html?advertisementId='+advertisement.id)
 
   const adPageTitle = document.querySelector('.ad-title')
 
