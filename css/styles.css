@@ -164,7 +164,6 @@ header ul li a:hover {
 
 @media (min-width:768px){
   .ads-home-page {
-    display: grid;
     grid-template-columns:1fr 1fr;
   }
 }
