@@ -63,13 +63,29 @@ const updateAdvertisementOnServer = async (updatedAdvertisement) => {
 };
 const onCheckAdObject = (advertisement) => {
   if(advertisement) {
+    const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
     const { name, price, location, description, photo } = advertisement;
-    if (name === '' || price === '' || location === '' || description === '' || photo === '') {
-      responseWrap.innerHTML = 'Skelbimo laukai tusti'
+    if (name === ''|| price === '' || location === '' || description === '' ){  // validation
+      responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
+      return false; 
+    } else if (isNaN(parseFloat(price))){   // check if is not a number
+      responseWrap.innerHTML = 'Turi buti skaiciai';
+      return false; 
+    } else if (photo === '') {
+      responseWrap.innerHTML = 'Paveikslelio laukas tuscias bet galite testi';
+      setTimeout(()=>{
+        window.location.replace("./index.html");
+      },2000)
+      return true; 
+    }  else if (!urlRegex.test(photo)) {
+      responseWrap.innerHTML = 'Paveikslelio nuoroda netinkama';
       return false;
     } else {
-      responseWrap.innerHTML = 'Skelbimo laukai sekmingai koreguoti'
-      return true
+      responseWrap.innerHTML = 'Skelbimas sekmingai koreguotas'
+      setTimeout(()=>{
+        window.location.replace("./index.html");
+      },2000)
+      return true; 
     }
   } else {
     return false;
@@ -90,10 +106,11 @@ const onPutAdObjectClick = async (e) => {
     advertisement.name = adPageTitle; // Modify the name property directly
     advertisement.price = adPagePrice; 
     advertisement.location = adPageLocation; 
-    advertisement.image = adPageImage; 
+    advertisement.photo = adPageImage; 
     advertisement.description = adPageDescription; 
+    
     const putToAdvertisementObject = await updateAdvertisementOnServer(advertisement);
-
+    
     if(putToAdvertisementObject){
       onCheckAdObject(putToAdvertisementObject)
     } else {

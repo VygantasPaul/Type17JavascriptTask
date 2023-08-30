@@ -93,6 +93,7 @@ header ul li a:hover {
   height: 310px;
   object-fit: cover;
 }
+
 .ads-home-page  .ads-info-box  {
   padding: 0.5rem;
 }
@@ -109,13 +110,21 @@ header ul li a:hover {
   padding-left: 3rem;
   
 }
+.details-page-inner  .btn-edit {
+  padding-left: 1rem;
+}
+.details-page-inner  .btn-edit:hover {
+  text-decoration: underline;
+}
 .details-page-inner .image-wrapper img{
   max-width: 100%;
   height: 400px;
   width: 100%;
 }
+.details-page-inner .ad-description {
+  padding-bottom: 2rem;
+}
 .details-page-inner .btn-delete{
-  margin-top: 5rem;
   display: inline-block;
   padding: 1rem;
   color: brown;

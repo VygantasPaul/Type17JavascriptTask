@@ -3,7 +3,10 @@ const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const url = new URL(window.location.href)
 const advertisementId = url.searchParams.get("advertisementId")
 const responseWrap = document.querySelector('.response');
-
+const setImagesAttributes = (img, alt, photo) => {
+  img.setAttribute('alt',alt);
+  img.setAttribute('src',photo || 'images/icon-image-not-found-free-vector.jpg' );
+}
 const constructHtmlPage = () => {
   
   const adPageWrap = document.querySelector('.details-page');
@@ -59,8 +62,7 @@ constructHtmlPage();
 
 const addToScreen = (advertisement) => {
   const adPageImageWrap = document.querySelector('#image')
-  adPageImageWrap.setAttribute('src',advertisement.photo)
-  adPageImageWrap.setAttribute('alt',advertisement.name)
+  setImagesAttributes(adPageImageWrap,advertisement.name,advertisement.photo)
 
   const buttonEdit = document.querySelector('.btn-edit')
   buttonEdit.setAttribute('href','./edit-page.html?advertisementId='+advertisement.id)

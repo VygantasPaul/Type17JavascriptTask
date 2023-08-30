@@ -1,13 +1,16 @@
 const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const responseWrap = document.querySelector('.response');
-
+const setImagesAttributes = (img, alt, photo) => {
+  img.setAttribute('alt',alt);
+  img.setAttribute('src',photo || 'images/icon-image-not-found-free-vector.jpg' );
+}
 const toShowData = (adsData) =>{
- 
+  
   const adsWrap = document.querySelector('.ads-home-page');
   const filterAdsData =  adsData.sort((a, b) => parseFloat(a.price.replace(/\./g, '')) - parseFloat(b.price.replace(/\./g, ''))); //filteted prices from lowest
-
+  
   filterAdsData.forEach(item => {  
-
+    
     const adsInnerWrap = document.createElement('a')
     adsInnerWrap.setAttribute('class','ad-item')
     adsInnerWrap.setAttribute("href","./details-page.html?advertisementId="+item.id)
@@ -23,11 +26,10 @@ const toShowData = (adsData) =>{
     const adPrice = document.createElement('h4')
     adPrice.setAttribute('class','ads-price')
     adPrice.innerHTML = item.price + '$'
-    
+
     const adImg = document.createElement('img')
     adImg.setAttribute('class','ads-img')
-    adImg.setAttribute('src',item.photo)
-    
+    setImagesAttributes(adImg,item.name,item.photo)
     adsWrap.append(adsInnerWrap) 
     
     adsInnerWrap.append(adImg) // Image wrap
@@ -35,7 +37,7 @@ const toShowData = (adsData) =>{
     adsInnerWrap.append(adsInfoBox) /// Text box wrap
     
     adsInfoBox.append(adTitle,adPrice)   
-
+    
   });
   
 }

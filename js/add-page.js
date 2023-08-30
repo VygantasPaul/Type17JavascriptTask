@@ -1,6 +1,6 @@
   const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
   const responseWrap = document.querySelector('.response');
-
+  
   const getAdObject = () => {
     const inputName = document.getElementById('input-name').value;
     const inputPrice = document.getElementById('input-price').value
@@ -16,7 +16,7 @@
     }
     return advertisement;
   }
-
+  
   const insertAdPost = async(advertisement) => {
     try {
       let response = await fetch(BASE_URL,{
@@ -34,16 +34,26 @@
       return false
     }
   }
-
+  
   const checkAdPostValid = (advertisements) => {
-    if(advertisements){
-      const { name, price, location, description, photo } = advertisements; //destruction
-      if (name === ''|| price === '' || location === '' || description === '' || photo === ''){  // validation
+    if(advertisements) {
+      const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+      const { name, price, location, description, photo } = advertisements;
+      if (name === ''|| price === '' || location === '' || description === '' ){  // validation
         responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
         return false; 
       } else if (isNaN(parseFloat(price))){   // check if is not a number
         responseWrap.innerHTML = 'Turi buti skaiciai';
         return false; 
+      } else if (photo === '') {
+        responseWrap.innerHTML = 'Paveikslelio laukas tuscias bet galite testi';
+        setTimeout(()=>{
+          window.location.replace("./index.html");
+        },2000)
+        return true; 
+      }  else if (!urlRegex.test(photo)) {
+        responseWrap.innerHTML = 'Paveikslelio nuoroda netinkama';
+        return false;
       } else {
         responseWrap.innerHTML = 'Skelbimas sekmingai idetas'
         setTimeout(()=>{
@@ -51,12 +61,11 @@
         },2000)
         return true; 
       }
-      
     } else {
-      return false
+      return false;
     }
   }
-
+  
   document.querySelector('form').addEventListener('submit', async(e)=>{
     e.preventDefault();
     const advertisement = getAdObject();   // asinging to object
@@ -67,3 +76,4 @@
       } 
     }
   })
+  
