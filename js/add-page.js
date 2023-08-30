@@ -38,7 +38,6 @@
   const checkAdPostValid = (advertisements) => {
     if(advertisements){
       const { name, price, location, description, photo } = advertisements; //destruction
-
       if (name === ''|| price === '' || location === '' || description === '' || photo === ''){  // validation
         responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
         return false; 

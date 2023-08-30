@@ -35,7 +35,7 @@ const fetchExistingData = async () => {
     }
   } catch (error) {
     console.error(error);
-    return null;
+    return false;
   }
 };
 
@@ -54,36 +54,53 @@ const updateAdvertisementOnServer = async (updatedAdvertisement) => {
       return putAdvertisement;
     } else {
       console.error('PUT request failed:', response.status, response.statusText);
-      return null;
+      return false;
     }
   } catch (error) {
     console.error('Error sending PUT request:', error);
-    return null;
+    return false;
   }
 };
-
+const onCheckAdObject = (advertisement) => {
+  if(advertisement) {
+    const { name, price, location, description, photo } = advertisement;
+    if (name === '' || price === '' || location === '' || description === '' || photo === '') {
+      responseWrap.innerHTML = 'Skelbimo laukai tusti'
+      return false;
+    } else {
+      responseWrap.innerHTML = 'Skelbimo laukai sekmingai koreguoti'
+      return true
+    }
+  } else {
+    return false;
+  }
+}
 const onPutAdObjectClick = async (e) => {
   e.preventDefault();
   
   const advertisement = await fetchExistingData(); // Fetch the advertisement data
-  
   if (advertisement) {
     const adPageTitle = document.getElementById('input-name').value;
     const adPagePrice = document.getElementById('input-price').value;
     const adPageLocation = document.getElementById('input-location').value;
     const adPageImage = document.getElementById('input-image').value;
     const adPageDescription = document.getElementById('input-description').value;
-
-    console.log(advertisement)
     
+    console.log(advertisement)
     advertisement.name = adPageTitle; // Modify the name property directly
     advertisement.price = adPagePrice; 
     advertisement.location = adPageLocation; 
     advertisement.image = adPageImage; 
     advertisement.description = adPageDescription; 
+    const putToAdvertisementObject = await updateAdvertisementOnServer(advertisement);
 
-    const putAdObject = await updateAdvertisementOnServer(advertisement);
-    console.log('Updated Advertisement:', putAdObject);
+    if(putToAdvertisementObject){
+      onCheckAdObject(putToAdvertisementObject)
+    } else {
+      return false
+    }
+    console.log('Updated Advertisement:', putToAdvertisementObject);
+    
     toDisplayData(advertisement);
   }
 };
@@ -92,7 +109,9 @@ document.querySelector('#btn-edit').addEventListener('click', onPutAdObjectClick
 
 const displayData = async () => {
   const advertisement = await fetchExistingData();
-  toDisplayData(advertisement);
+  if((advertisement)){
+    toDisplayData(advertisement);
+  }
 };
 
 displayData();
