@@ -69,7 +69,7 @@ header ul li a:hover {
 
 .ads-home-page {
   display: grid;
-  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  grid-template-columns:1fr;
   justify-content: center;
   gap: 2rem;
   padding-top: 4rem;
@@ -162,8 +162,16 @@ header ul li a:hover {
   padding: 0 1rem;
 }
 
-
+@media (min-width:768px){
+  .ads-home-page {
+    display: grid;
+    grid-template-columns:1fr 1fr;
+  }
+}
 @media (min-width:992px) {
+  .ads-home-page {
+    grid-template-columns: repeat(3, minmax(auto, 1fr));
+  }
   .header-inner {
     display: flex;
   }
@@ -176,7 +184,7 @@ header ul li a:hover {
   }
   .form-add-item form {
     display: flex;
-
+    
   }
   .form-add-item form  .left-inputs {
     width: 50%;

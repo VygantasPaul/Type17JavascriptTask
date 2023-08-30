@@ -66,7 +66,7 @@ const addToScreen = (advertisement) => {
   adPagelocation.innerHTML = `<strong>Lokacija:</strong>  ${advertisement.location}`
   
   const adPagePrice = document.querySelector('.ad-price')
-  adPagePrice.innerHTML = `<strong>Kaina: </strong> ${advertisement.price}`
+  adPagePrice.innerHTML = `<strong>Kaina: </strong> ${advertisement.price}$`
   
   const adPageDescription = document.querySelector('p')
   adPageDescription.innerHTML = `<strong>Aprasymas: </strong> ${advertisement.description}`
