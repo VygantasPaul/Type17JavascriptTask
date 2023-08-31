@@ -2,7 +2,24 @@
 const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const url = new URL(window.location.href)
 const advertisementId = url.searchParams.get("advertisementId")
-const responseWrap = document.querySelector('.response');
+
+const alertMessages = (message, isSuccess)=>{
+  const responseWrap = document.querySelector('.response');
+  const alertResponseSuccess = document.createElement('div');
+  const alertResponseError = document.createElement('div');
+  alertResponseSuccess.setAttribute('class','alert-success')
+  alertResponseError.setAttribute('class','alert-error')
+  responseWrap.innerHTML = ''
+  responseWrap.append(isSuccess ? alertResponseSuccess: alertResponseError)
+  
+  alertResponseSuccess.innerHTML = message;
+  alertResponseError.innerHTML = message;
+  alertResponseSuccess.style.borderColor = isSuccess ? 'green' : 'red'
+  alertResponseSuccess.style.borderColor = isSuccess ? 'green' : 'red'
+  
+  alertResponseError.style.borderColor = isSuccess ? 'green' : 'red'
+  alertResponseError.style.color = isSuccess ?  'green' : 'red'
+}
 const setImagesAttributes = (img, alt, photo) => {
   img.setAttribute('alt',alt);
   img.setAttribute('src',photo || 'images/icon-image-not-found-free-vector.jpg' );
@@ -41,11 +58,11 @@ const constructHtmlPage = () => {
   buttonDelete.setAttribute('class','btn-delete')
   buttonDelete.setAttribute('type','button')
   buttonDelete.textContent = "Istrinti"
-
+  
   const buttonEdit = document.createElement('a')
   buttonEdit.setAttribute('class','btn-edit')
   buttonEdit.textContent = "Koreguoti"
-
+  
   const adPageDescription = document.createElement('div')
   adPageDescription.setAttribute('class','ad-description')
   
@@ -63,12 +80,12 @@ constructHtmlPage();
 const addToScreen = (advertisement) => {
   const adPageImageWrap = document.querySelector('#image')
   setImagesAttributes(adPageImageWrap,advertisement.name,advertisement.photo)
-
+  
   const buttonEdit = document.querySelector('.btn-edit')
   buttonEdit.setAttribute('href','./edit-page.html?advertisementId='+advertisement.id)
-
+  
   const adPageTitle = document.querySelector('.ad-title')
-
+  
   adPageTitle.innerHTML = `<strong>Pavadinimas:</strong> ${advertisement.name}`
   
   const adPagelocation = document.querySelector('.ad-location')
@@ -113,12 +130,13 @@ const deleteAdObject = async() => {
 
 const checkDeleteAdObject = (data) => {
   if(data){
-    responseWrap.innerHTML = 'Skelbimas sekmingai istrintas'
+    alertMessages('Skelbimas sekmingai istrintas',true)
+    responseWrap.innerHTML = ''
     setTimeout(()=>{
       window.location.replace("./index.html");
     },1000)
   }else {
-    responseWrap.innerHTML = 'Veiksmo atlikti nepavyko'
+    alertMessages('Skelbimas istrinti nepavyko',false)
     return false
   }
 }

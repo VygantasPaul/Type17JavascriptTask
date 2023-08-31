@@ -1,17 +1,23 @@
 const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const url = new URL(window.location.href);
 const advertisementId = url.searchParams.get("advertisementId");
-const responseWrap = document.querySelector('.response');
+
 const alertMessages = (message, isSuccess)=>{
+  const responseWrap = document.querySelector('.response');
   const alertResponseSuccess = document.createElement('div');
   const alertResponseError = document.createElement('div');
   alertResponseSuccess.setAttribute('class','alert-success')
   alertResponseError.setAttribute('class','alert-error')
-  responseWrap.append(alertResponseSuccess)
-  responseWrap.append(alertResponseError)
-  responseWrap.innerHTML = message;
-  responseWrap.style.border = isSuccess ? '1px solid green' : '1px solid red'
-  responseWrap.style.color = isSuccess ?  'green' : 'red'
+  responseWrap.innerHTML = ''
+  responseWrap.append(isSuccess ? alertResponseSuccess: alertResponseError)
+  
+  alertResponseSuccess.innerHTML = message;
+  alertResponseError.innerHTML = message;
+  alertResponseSuccess.style.borderColor = isSuccess ? 'green' : 'red'
+  alertResponseSuccess.style.borderColor = isSuccess ? 'green' : 'red'
+  
+  alertResponseError.style.borderColor = isSuccess ? 'green' : 'red'
+  alertResponseError.style.color = isSuccess ?  'green' : 'red'
 }
 
 const getInputsHtmlvalues = () => {
