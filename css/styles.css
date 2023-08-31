@@ -76,11 +76,14 @@ header ul li a:hover {
 }
 .ad-item {
   border: 2px solid rgb(229, 229, 229);
+  transition: 0.3s;
 }
 .ad-item:hover {
   border: 2px solid #d0c28a;
   box-shadow: 0 0 4px rgb(192, 192, 192);
+  scale: 1.03;
 }
+
 .ad-item:hover h2 {
   color: #d0c28a;
 }
@@ -126,10 +129,11 @@ header ul li a:hover {
 }
 .details-page-inner .btn-delete{
   display: inline-block;
-  padding: 1rem;
+  padding: 1rem 1.4rem;
   color: brown;
   cursor: pointer;
   border: none;
+  font-size: 1rem;
 }
 .details-page-inner .btn-delete:hover {
   text-decoration: underline;
@@ -168,7 +172,7 @@ header ul li a:hover {
   margin-bottom: 1rem;
 }
 .response {
-  padding: 0 1rem;
+  padding:  1rem;
 }
 
 @media (min-width:768px){

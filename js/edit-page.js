@@ -2,6 +2,17 @@ const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
 const url = new URL(window.location.href);
 const advertisementId = url.searchParams.get("advertisementId");
 const responseWrap = document.querySelector('.response');
+const alertMessages = (message, isSuccess)=>{
+  const alertResponseSuccess = document.createElement('div');
+  const alertResponseError = document.createElement('div');
+  alertResponseSuccess.setAttribute('class','alert-success')
+  alertResponseError.setAttribute('class','alert-error')
+  responseWrap.append(alertResponseSuccess)
+  responseWrap.append(alertResponseError)
+  responseWrap.innerHTML = message;
+  responseWrap.style.border = isSuccess ? '1px solid green' : '1px solid red'
+  responseWrap.style.color = isSuccess ?  'green' : 'red'
+}
 
 const getInputsHtmlvalues = () => {
   const adPageTitle = document.getElementById('input-name');
@@ -18,16 +29,29 @@ const getInputsHtmlvalues = () => {
     adPageDescription
   }
 }
-const { adPageTitle, adPagePrice, adPageLocation, adPageImage, adPageDescription } = getInputsHtmlvalues(); // desctruction
+const { adPageTitle, adPagePrice, adPageLocation, adPageImage, adPageDescription } = getInputsHtmlvalues(); // destruction
+
+const toDisplayUpdatedData = (advertisement) => {   //  display old values to data input
+  if (advertisement) {
+    adPageTitle.value = advertisement.name;
+    adPagePrice.value = advertisement.price;
+    adPageLocation.value = advertisement.location;
+    adPageImage.value = advertisement.photo;
+    adPageDescription.innerText = advertisement.description;
+    
+    return advertisement;
+  } else {
+    return false;
+  }
+}; 
 
 const fetchExistingAdsData = async () => {
   try {
     let response = await fetch(BASE_URL + '/' + advertisementId);
     if (response.ok) {
       const advertisement = await response.json();
-      
       return advertisement;
-
+      
     }
   } catch (error) {
     console.error(error);
@@ -49,7 +73,7 @@ const updateNewAdsOnServer = async (updatedAdvertisement) => {
       const putAdvertisement = await response.json();
       return putAdvertisement;
     } else {
-      console.error('PUT request failed:', response.status, response.statusText);
+      console.error('PUT request failed:', response.status);
       return false;
     }
   } catch (error) {
@@ -57,19 +81,7 @@ const updateNewAdsOnServer = async (updatedAdvertisement) => {
     return false;
   }
 };
-const toDisplayUpdatedData = (advertisement) => {   //  display old values to data input
-  if (advertisement) {
-    adPageTitle.value = advertisement.name;
-    adPagePrice.value = advertisement.price;
-    adPageLocation.value = advertisement.location;
-    adPageImage.value = advertisement.photo;
-    adPageDescription.innerText = advertisement.description;
-    
-    return advertisement;
-  } else {
-    return false;
-  }
-}; 
+
 
 const toPutNewValuesOnObject = (advertisement) => {
   advertisement.name = adPageTitle.value; // display updated value to fields
@@ -78,29 +90,29 @@ const toPutNewValuesOnObject = (advertisement) => {
   advertisement.photo = adPageImage.value; 
   advertisement.description = adPageDescription.value; 
 }
- 
+
 
 const onCheckAdObject = (advertisement) => {
   if(advertisement) {
-    const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     const { name, price, location, description, photo } = advertisement;
     if (name === ''|| price === '' || location === '' || description === '' ){  // validation
-      responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
+      alertMessages('Privaloma uzpildyti visus laukus', false)
       return false; 
     } else if (isNaN(parseFloat(price))){   // check if is not a number
-      responseWrap.innerHTML = 'Turi buti skaiciai';
+      alertMessages('Kainos laukely turi buti tik skaiciai', false)
       return false; 
     } else if (photo === '') {
-      responseWrap.innerHTML = 'Paveikslelio laukas tuscias bet galite testi';
+      alertMessages('Paveikslelio laukas tuscias bet galite testi ir ideti paveiksleli veliau', true)
       setTimeout(()=>{
         window.location.replace("./details-page.html?advertisementId="+advertisement.id);
       },2000)
       return true; 
     }  else if (!urlRegex.test(photo)) {
-      responseWrap.innerHTML = 'Paveikslelio nuoroda netinkama';
+      alertMessages('Paveikslelio nuoroda netinkama',false)
       return false;
     } else {
-      responseWrap.innerHTML = 'Skelbimas sekmingai koreguotas'
+      alertMessages('Skelbimas sekmingai koreguotas',true)
       setTimeout(()=>{
         window.location.replace("./details-page.html?advertisementId="+advertisement.id);
       },2000)
@@ -113,14 +125,14 @@ const onCheckAdObject = (advertisement) => {
 
 const onPutAdObjectClick = async (e) => {
   e.preventDefault();
-
+  
   const advertisement = await fetchExistingAdsData(); // Fetch the advertisement data
   if (advertisement) {
     toPutNewValuesOnObject(advertisement); // Update the object with new values
     
-    const isValid = onCheckAdObject(advertisement);
+    const isValid =  onCheckAdObject(advertisement);
     if (!isValid) {
-      return; // Prevent further actions if validation fails
+      return false;  // Prevent further actions if validation fails
     }
     
     const putToAdObject = await updateNewAdsOnServer(advertisement);

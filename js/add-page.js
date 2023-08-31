@@ -1,6 +1,16 @@
   const BASE_URL = 'https://64ec3372f9b2b70f2bf9f191.mockapi.io/ads_posts';
   const responseWrap = document.querySelector('.response');
-  
+  const alertMessages = (message, isSuccess)=>{
+    const alertResponseSuccess = document.createElement('div');
+    const alertResponseError = document.createElement('div');
+    alertResponseSuccess.setAttribute('class','alert-success')
+    alertResponseError.setAttribute('class','alert-error')
+    responseWrap.append(alertResponseSuccess)
+    responseWrap.append(alertResponseError)
+    responseWrap.innerHTML = message;
+    responseWrap.style.border = isSuccess ? '1px solid green' : '1px solid red'
+    responseWrap.style.color = isSuccess ?  'green' : 'red'
+  }
   const getAdObject = () => {
     const inputName = document.getElementById('input-name').value;
     const inputPrice = document.getElementById('input-price').value
@@ -40,22 +50,22 @@
       const urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\/\w .-]*)*\/?$/;
       const { name, price, location, description, photo } = advertisements;
       if (name === ''|| price === '' || location === '' || description === '' ){  // validation
-        responseWrap.innerHTML = 'Privaloma uzpildyti visus laukus';
+        alertMessages('Privaloma uzpildyti visus laukus', false)
         return false; 
       } else if (isNaN(parseFloat(price))){   // check if is not a number
-        responseWrap.innerHTML = 'Turi buti skaiciai';
+        alertMessages('Kainos laukely turi buti tik skaiciai', false)
         return false; 
       } else if (photo === '') {
-        responseWrap.innerHTML = 'Paveikslelio laukas tuscias bet galite testi';
+        alertMessages('Paveikslelio laukas tuscias bet galite testi ir ideti paveiksleli veliau', true)
         setTimeout(()=>{
           window.location.replace("./index.html");
         },2000)
         return true; 
       }  else if (!urlRegex.test(photo)) {
-        responseWrap.innerHTML = 'Paveikslelio nuoroda netinkama';
+        alertMessages('Paveikslelio nuoroda netinkama',false)
         return false;
       } else {
-        responseWrap.innerHTML = 'Skelbimas sekmingai idetas'
+        alertMessages('Skelbimas sekmingai koreguotas',true)
         setTimeout(()=>{
           window.location.replace("./index.html");
         },2000)
